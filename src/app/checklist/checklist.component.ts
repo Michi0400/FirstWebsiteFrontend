@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from "@angular/router";
 import { Question } from "../models/question.model";
-import { QuestionEditComponent } from '../question-edit/question-edit.component';
 import { QuestionService } from '../question.service';
+import { QuestionDeleteComponent } from "./question-delete/question-delete.component";
+import { QuestionEditComponent } from './question-edit/question-edit.component';
 
 @Component({
   selector: 'app-checklist',
@@ -38,6 +39,7 @@ export class ChecklistComponent implements OnInit {
       this.isEmpty = false;
     }
   }
+
   public async delete(data: any) {
     await this.questionService.delete(data.id);
     this.trainingData = this.trainingData.filter(d => d.id !== data.id)
@@ -54,11 +56,18 @@ export class ChecklistComponent implements OnInit {
     this.router.navigateByUrl('/shoppinglist');
   }
 
-  public async deleteAll(data: any) {
-    await data.forEach(element => {
-      this.questionService.delete(element.id);
-      this.trainingData = this.trainingData.filter(d => d.id !== element.id);
-    });
+  public async deleteAll(data: Question[]) {
+    await this.dialog.open(QuestionDeleteComponent)
+      .afterClosed()
+      .subscribe(response => {
+        if (response) {
+          data.forEach(element => {
+            this.questionService.delete(element.id);
+            this.trainingData = this.trainingData.filter(d => d.id !== element.id);
+          });
+        }
+      });
+
     if (this.trainingData.length == 0) {
       this.isEmpty = true;
     }

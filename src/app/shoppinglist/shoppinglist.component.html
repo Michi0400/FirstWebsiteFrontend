@@ -18,19 +18,40 @@
           </i>
         </button></span>
     </mat-toolbar>
-    <mat-selection-list *ngFor="let gegenstand of trainingData">
-      <mat-list-option>
-        <mat-list-item>{{gegenstand}}</mat-list-item>
-      </mat-list-option>
-    </mat-selection-list>
+    <table mat-table [dataSource]="trainingData">
 
+      <ng-container matColumnDef="name">
+        <th mat-header-cell class="name" *matHeaderCellDef>Gegenstand</th>
+        <td mat-cell *matCellDef="let user">
+          <mat-selection-list>
+            <mat-list-option>
+              <mat-list-item>
+                <span>{{user.name}}</span>
+              </mat-list-item>
+            </mat-list-option>
+          </mat-selection-list>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell class="delete" *matHeaderCellDef></th>
+        <td mat-total-cell *matCellDef="let user">
+          <button mat-button (click)="delete(user)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-table"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
     <br>
     <mat-card *ngIf="isAdd">
       <mat-card-title>Eingabefeld</mat-card-title>
       <div class="inputfield">
         <mat-form-field>
           <mat-label>Input</mat-label>
-          <input matInput [(ngModel)]="newInput" placeholder="Wie gehts?">
+          <input matInput [(ngModel)]="newInput" placeholder="Wie gehts?" (keyup.enter)="add()">
         </mat-form-field>
         <br>
         <button mat-button (click)="add()" class="saveButton">
@@ -43,7 +64,7 @@
         Add
       </button>
       <span class="autoFlexer"></span>
-      <button mat-button [disabled]="isEmpty" (click)="deleteAll()">
+      <button mat-button [disabled]="isEmpty" (click)="deleteAll(trainingData)">
         Delete all
       </button>
     </mat-toolbar>

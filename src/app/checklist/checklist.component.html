@@ -44,10 +44,10 @@
         <td mat-cell *matCellDef="let user">{{user.output}}</td>
         <td mat-footer-cell *matFooterCellDef>
           <mat-form-field *ngIf="!editing">
-            <input matInput [(ngModel)]="newOutput" placeholder="Output">
+            <input matInput [(ngModel)]="newOutput" placeholder="Output" (keyup.enter)="lernWas()">
           </mat-form-field>
           <mat-form-field *ngIf="editing">
-            <input matInput [(ngModel)]="newOutput">
+            <input matInput [(ngModel)]="newOutput" (keyup.enter)="lernWas()">
           </mat-form-field>
         </td>
       </ng-container>

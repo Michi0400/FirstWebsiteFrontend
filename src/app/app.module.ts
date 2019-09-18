@@ -7,19 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { angularMaterial } from '../angular-material';
 import { AppComponent } from './app.component';
-import { ChecklistComponent } from './checklist/checklist.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { QuestionEditComponent } from './question-edit/question-edit.component';
-import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 
 const appRoutes: Routes = [
   {
     path: 'checklist',
-    component: ChecklistComponent
+    loadChildren: () => import('./checklist/checklist.module').then(m => m.ChecklistModule),
   },
   {
     path: 'shoppinglist',
-    component: ShoppinglistComponent
+    loadChildren: () => import('./shoppinglist/shoppinglist.module').then(m => m.ShoppinglistModule)
   },
   {
     path: '',
@@ -31,10 +28,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ShoppinglistComponent,
-    PageNotFoundComponent,
-    ChecklistComponent,
-    QuestionEditComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +42,5 @@ const appRoutes: Routes = [
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [QuestionEditComponent]
 })
 export class AppModule { }

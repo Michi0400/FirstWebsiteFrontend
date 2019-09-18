@@ -46,3 +46,15 @@ mat-sidenav {
 .list{
     width: 99%;
 }
+
+table{
+    width: 100%;
+}
+
+th.mat-column-name{ 
+    width: 95%;
+} 
+
+th.mat-column-delete{ 
+    width: 5%;
+} 

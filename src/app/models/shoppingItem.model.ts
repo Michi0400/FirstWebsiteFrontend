@@ -4,6 +4,5 @@ export class ShoppingItem {
 
     constructor({ name }: { name: string; }) {
         this.name = name;
-
     }
 }

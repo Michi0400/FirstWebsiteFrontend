@@ -25,7 +25,7 @@ tr.mat-footer-row{
 }
 
 th.mat-column-index{ 
-    width: 15%;
+    width: 10%;
 } 
 
 
@@ -34,12 +34,12 @@ th.mat-column-delete{
 }
 
 th.mat-column-input{
-    width: 37,5%;
+    width: 40%;
 }
 
 
 th.mat-column-output{
-    width: 37,5%;
+    width: 40%;
 }
 
 th.mat-column-edit{
