@@ -11,22 +11,39 @@ h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
     font-weight: bold;
     text-align: center;
    }
-
+   
 table{
     width: 100%;
+}
+
+table >thead {
+    width: 100%;
+}
+
+tr.mat-footer-row{
+    height: 60px;
 }
 
 th.mat-column-index{ 
     width: 15%;
 } 
+
+
 th.mat-column-delete{
     width: 5%;
 }
+
 th.mat-column-input{
-    width: 40%;
+    width: 37,5%;
 }
+
+
 th.mat-column-output{
-    width: 40%;
+    width: 37,5%;
+}
+
+th.mat-column-edit{
+    width: 5%;
 }
 
 .autoFlexer{
@@ -37,8 +54,8 @@ th.mat-column-output{
     position: absolute;
     top: 0;
     bottom: 0;
-    left: auto;
-    right: auto;
+    left: 0;
+    right: 0;
   }
 
 mat-sidenav {
@@ -57,4 +74,13 @@ mat-sidenav {
 
 .menuSideNav{
     text-align: center;
+}
+
+button{
+    background-color: rgb(119, 113, 113);
+    color: ivory;
+}
+
+.mat-form-field{
+    width: 99%;
 }

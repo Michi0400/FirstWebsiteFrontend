@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Editing</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.input" placeholder="Input">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.output" placeholder="Output">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="update()">Update</button>
+</div>

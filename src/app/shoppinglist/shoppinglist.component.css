@@ -12,33 +12,17 @@ h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
     text-align: center;
    }
 
-table{
-    width: 100%;
-}
-
-th.mat-column-index{ 
-    width: 15%;
-} 
-th.mat-column-delete{
-    width: 5%;
-}
-th.mat-column-input{
-    width: 40%;
-}
-th.mat-column-output{
-    width: 40%;
-}
-
 .autoFlexer{
     flex: 1 1 auto;
 }
 
 .example-container {
+    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: auto;
-    right: auto;
+    left: 0;
+    right: 0;
   }
 
 mat-sidenav {
@@ -57,4 +41,8 @@ mat-sidenav {
 
 .menuSideNav{
     text-align: center;
+}
+
+.list{
+    width: 99%;
 }
