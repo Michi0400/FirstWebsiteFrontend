@@ -34,15 +34,19 @@ th.mat-column-delete{
 }
 
 th.mat-column-input{
-    width: 40%;
+    width: 25%;
 }
 
 
 th.mat-column-output{
-    width: 40%;
+    width: 50%;
 }
 
 th.mat-column-edit{
+    width: 5%;
+}
+
+th.mat-column-link{
     width: 5%;
 }
 

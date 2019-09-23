@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Adding</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="input" placeholder="Input">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput [(ngModel)]="output" placeholder="Output">
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="!emtyAngaben">
+        <mat-list>
+            <mat-list-item *ngFor="let item of angaben">{{item}}</mat-list-item>
+        </mat-list>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="angabe" placeholder="Angabe">
+    </mat-form-field>
+    <button mat-button (click)="addAngabe()">
+        <i class="material-icons">
+            add
+        </i></button>
+    <br>
+    <mat-form-field>
+        <input matInput [(ngModel)]="anleitung" placeholder="Anleitung">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="add()">Add</button>
+</div>

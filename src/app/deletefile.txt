@@ -1,0 +1,30 @@
+checklist component html:
+
+<td mat-footer-cell *matFooterCellDef>
+          <mat-form-field *ngIf="!editing">
+            <input matInput [(ngModel)]="newInput" placeholder="Name">
+          </mat-form-field>
+          <mat-form-field *ngIf="editing">
+            <input matInput [(ngModel)]="newInput">
+          </mat-form-field>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <mat-form-field *ngIf="!editing">
+            <input matInput [(ngModel)]="newOutput" placeholder="Short description" (keyup.enter)="lernWas()">
+          </mat-form-field>
+          <mat-form-field *ngIf="editing">
+            <input matInput [(ngModel)]="newOutput" (keyup.enter)="lernWas()">
+          </mat-form-field>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <button mat-button *ngIf="!editing" (click)="lernWas()" class="saveButton">
+            <i class="material-icons">
+              done
+            </i>
+          </button>
+          <button mat-button *ngIf="editing" (click)="update()" class="editButton">
+            Update
+          </button>
+        </td>

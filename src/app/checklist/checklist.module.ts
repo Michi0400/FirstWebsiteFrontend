@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { angularMaterial } from '../../angular-material';
 import { QuestionService } from '../question.service';
+import { ChecklistContentComponent } from './checklist-content/checklist-content.component';
 import { ChecklistComponent } from './checklist.component';
+import { QuestionAddComponent } from './question-add/question-add.component';
 import { QuestionDeleteComponent } from "./question-delete/question-delete.component";
 import { QuestionEditComponent } from './question-edit/question-edit.component';
 
@@ -13,6 +15,15 @@ const routes: Routes = [
   {
     path: '',
     component: ChecklistComponent
+  },
+  {
+    path: 'content/:id',
+    component: ChecklistContentComponent
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ]
 
@@ -20,15 +31,18 @@ const routes: Routes = [
   declarations: [
     ChecklistComponent,
     QuestionEditComponent,
-    QuestionDeleteComponent
+    QuestionDeleteComponent,
+    ChecklistContentComponent,
+    QuestionAddComponent
   ],
   imports: [
     CommonModule,
     angularMaterial,
     FormsModule,
+    RouterModule,
     RouterModule.forChild(routes)
   ],
   providers: [QuestionService],
-  entryComponents: [QuestionEditComponent, QuestionDeleteComponent]
+  entryComponents: [QuestionEditComponent, QuestionDeleteComponent, QuestionAddComponent]
 })
 export class ChecklistModule { }

@@ -58,3 +58,8 @@ th.mat-column-name{
 th.mat-column-delete{ 
     width: 5%;
 } 
+
+button{
+    background-color: rgb(119, 113, 113);
+    color: ivory;
+}

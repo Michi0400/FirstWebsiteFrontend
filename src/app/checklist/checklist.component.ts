@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from "@angular/router";
 import { Question } from "../models/question.model";
 import { QuestionService } from '../question.service';
+import { QuestionAddComponent } from "./question-add/question-add.component";
 import { QuestionDeleteComponent } from "./question-delete/question-delete.component";
 import { QuestionEditComponent } from './question-edit/question-edit.component';
 
@@ -12,11 +13,9 @@ import { QuestionEditComponent } from './question-edit/question-edit.component';
   styleUrls: ['./checklist.component.css']
 })
 export class ChecklistComponent implements OnInit {
-  public newInput = '';
-  public newOutput = '';
   public trainingData: Question[] = [
   ];
-  public displayedColumns: string[] = ['index', 'input', 'output', 'delete', 'edit'];
+  public displayedColumns: string[] = ['index', 'input', 'output', 'delete', 'edit', 'link'];
   public isEmpty = false;
   public editing = false;
   public helpId: string;
@@ -27,17 +26,15 @@ export class ChecklistComponent implements OnInit {
     this.trainingData = await this.questionService.getAll();
   }
 
-  public async lernWas() {
-    if (this.newInput != '' && this.newOutput != '') {
-      const q = await this.questionService.create({
-        input: this.newInput,
-        output: this.newOutput
-      });
-      this.trainingData = [...this.trainingData, q]
-      this.newInput = ''
-      this.newOutput = ''
-      this.isEmpty = false;
-    }
+  public async add() {
+    this.isEmpty = false;
+    this.dialog.open(QuestionAddComponent)
+      .afterClosed()
+      .subscribe(response => {
+        if (response != null) {
+          this.trainingData = [...this.trainingData, response]
+        }
+      })
   }
 
   public async delete(data: any) {

@@ -13,10 +13,12 @@ export class QuestionService {
     return this.http.get<Question[]>('http://localhost:4000/question').toPromise();
   }
 
-  public async create({ input, output }: { input: string, output: string }) {
+  public async create({ input, output, angaben, anleitung }: { input: string, output: string, angaben: string[], anleitung: string }) {
     return this.http.post<Question>('http://localhost:4000/question', {
       input,
-      output
+      output,
+      angaben,
+      anleitung
     }).toPromise()
   }
 
@@ -29,5 +31,9 @@ export class QuestionService {
       input,
       output
     }).toPromise();
+  }
+
+  public async getOne(id: string) {
+    return this.http.get<Question>(`http://localhost:4000/question/content/${id}`).toPromise();
   }
 }
