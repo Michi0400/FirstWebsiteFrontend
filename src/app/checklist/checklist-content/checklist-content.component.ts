@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Angabe } from 'src/app/models/angabe.model';
 import { Question } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/question.service';
 
@@ -15,8 +16,10 @@ export class ChecklistContentComponent implements OnInit {
   public data: Question;
   private routeSub: Subscription;
   private helpId;
-  public helpAngaben: string[];
+  public helpAngaben: Angabe[];
   public helpAnleitung: string;
+  public helpName: string;
+  public displayedColumns: string[] = ['angabe', 'add'];
 
   constructor(private _location: Location, private readonly questionService: QuestionService, private route: ActivatedRoute) { }
 
@@ -27,6 +30,7 @@ export class ChecklistContentComponent implements OnInit {
     this.data = await this.questionService.getOne(this.helpId);
     this.helpAngaben = this.data.angaben;
     this.helpAnleitung = this.data.anleitung;
+    this.helpName = this.data.input;
   }
 
   public goBack() {

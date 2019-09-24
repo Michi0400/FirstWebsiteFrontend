@@ -1,0 +1,20 @@
+button{
+    background-color: rgb(119, 113, 113);
+    color: ivory;
+}
+
+table{
+    width: 100%;
+}
+
+table >thead {
+    width: 100%;
+}
+
+th.mat-column-angabe{ 
+    width: 95%;
+} 
+
+th.mat-column-add{ 
+    width: 5%;
+} 

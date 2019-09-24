@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { angularMaterial } from '../../angular-material';
 import { QuestionService } from '../question.service';
@@ -40,7 +40,8 @@ const routes: Routes = [
     angularMaterial,
     FormsModule,
     RouterModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   providers: [QuestionService],
   entryComponents: [QuestionEditComponent, QuestionDeleteComponent, QuestionAddComponent]

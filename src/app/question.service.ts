@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Angabe } from './models/angabe.model';
 import { Question } from './models/question.model';
 
 @Injectable({
@@ -9,11 +10,20 @@ export class QuestionService {
 
   constructor(private readonly http: HttpClient) { }
 
+  public async queryAnlage(query: string) {
+    return this.http.get<any>(`http://localhost:4000/anlage`, {
+      params: {
+        q: query
+      }
+    }).toPromise()
+  }
+
   public async getAll() {
     return this.http.get<Question[]>('http://localhost:4000/question').toPromise();
   }
 
-  public async create({ input, output, angaben, anleitung }: { input: string, output: string, angaben: string[], anleitung: string }) {
+  public async create({ input, output, angaben, anleitung }: { input: string, output: string, angaben: Angabe[], anleitung: string }) {
+    console.log(angaben);
     return this.http.post<Question>('http://localhost:4000/question', {
       input,
       output,
