@@ -26,7 +26,7 @@ h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
   }
 
 mat-sidenav {
-    width: 10%;
+    width: auto;
 }
 
 .inputfield{

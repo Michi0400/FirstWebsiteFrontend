@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Angabe } from 'src/app/models/angabe.model';
@@ -20,12 +21,13 @@ export class ChecklistContentComponent implements OnInit {
   public helpAngaben: Angabe[];
   public helpAnleitung: string;
   public helpName: string;
-  public displayedColumns: string[] = ['angabe', 'add'];
+  public displayedColumns: string[] = ['menge', 'angabe', 'add'];
 
   constructor(private _location: Location,
     private readonly questionService: QuestionService,
     private route: ActivatedRoute,
-    private readonly shoppingItemService: ShoppingItemService) { }
+    private readonly shoppingItemService: ShoppingItemService,
+    private _snackBar: MatSnackBar) { }
 
   async ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
@@ -45,8 +47,8 @@ export class ChecklistContentComponent implements OnInit {
     const q = await this.shoppingItemService.create({
       name: name
     });
+    this._snackBar.open("Sucessful", "Added", {
+      duration: 2000,
+    });
   }
-
-
-
 }

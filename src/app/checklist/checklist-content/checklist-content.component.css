@@ -12,9 +12,13 @@ table >thead {
 }
 
 th.mat-column-angabe{ 
-    width: 95%;
+    width: 90%;
 } 
 
 th.mat-column-add{ 
+    width: 5%;
+} 
+
+th.mat-column-menge{ 
     width: 5%;
 } 

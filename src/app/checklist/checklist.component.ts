@@ -26,15 +26,15 @@ export class ChecklistComponent implements OnInit {
     this.trainingData = await this.questionService.getAll();
   }
 
-  public async add() {
-    this.isEmpty = false;
-    this.dialog.open(QuestionAddComponent)
-      .afterClosed()
+  public add() {
+    this.dialog.open(QuestionAddComponent, {
+      height: '600px',
+      width: '800px',
+    }).afterClosed()
       .subscribe(response => {
         if (response !== null) {
-          console.log(response);
           this.trainingData = [...this.trainingData, response];
-          // this.ngOnInit()
+          this.isEmpty = false;
         }
       })
   }
@@ -45,14 +45,6 @@ export class ChecklistComponent implements OnInit {
     if (this.trainingData.length == 0) {
       this.isEmpty = true;
     }
-  }
-
-  public goToChecklist() {
-    this.router.navigateByUrl('/checklist');
-  }
-
-  public goToShoppinglist() {
-    this.router.navigateByUrl('/shoppinglist');
   }
 
   public async deleteAll(data: Question[]) {

@@ -1,0 +1,28 @@
+button{
+    background-color: rgb(119, 113, 113);
+    color: ivory;
+}
+
+table{
+    width: 100%;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+th.mat-column-menge{ 
+    width: 15%;
+} 
+
+th.mat-column-angabe{ 
+    width: 70%;
+} 
+
+th.mat-column-add{ 
+    width: 5%;
+} 
+
+th.mat-column-einheit{ 
+    width: 10%;
+} 

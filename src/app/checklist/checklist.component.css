@@ -63,7 +63,7 @@ th.mat-column-link{
   }
 
 mat-sidenav {
-    width: 10%;
+    width: auto;
 }
 
 .inputfield{

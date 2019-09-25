@@ -1,0 +1,42 @@
+h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
+	color: #444;
+	margin: 0;
+	padding: 0px 0px 6px 0px;
+	font-size: 40px;
+	line-height: 34px;
+	letter-spacing: -2px;
+    font-weight: bold;
+    text-align: center;
+   }
+
+   .example-container {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  mat-sidenav {
+    width: auto;
+}
+
+.autoFlexer{
+    flex: 1 1 auto;
+}
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  #card-container {
+    width: 100%;
+    display: flex;
+    }
+
+    mat-card img{
+        object-fit: cover;
+        width: 100%; 
+        height: auto;
+      }
