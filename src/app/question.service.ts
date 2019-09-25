@@ -11,7 +11,7 @@ export class QuestionService {
   constructor(private readonly http: HttpClient) { }
 
   public async queryAnlage(query: string) {
-    return this.http.get<any>(`http://localhost:4000/anlage`, {
+    return this.http.get<any>(`http://localhost:4000/angabe`, {
       params: {
         q: query
       }
@@ -27,8 +27,8 @@ export class QuestionService {
     return this.http.post<Question>('http://localhost:4000/question', {
       input,
       output,
-      angaben,
-      anleitung
+      anleitung,
+      angaben
     }).toPromise()
   }
 
