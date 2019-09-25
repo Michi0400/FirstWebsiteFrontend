@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { angularMaterial } from '../../angular-material';
 import { QuestionService } from '../question.service';
+import { ShoppingItemService } from '../shoppingitem.service';
 import { ChecklistContentComponent } from './checklist-content/checklist-content.component';
 import { ChecklistComponent } from './checklist.component';
 import { QuestionAddComponent } from './question-add/question-add.component';
@@ -43,7 +44,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],
-  providers: [QuestionService],
+  providers: [QuestionService, ShoppingItemService],
   entryComponents: [QuestionEditComponent, QuestionDeleteComponent, QuestionAddComponent]
 })
 export class ChecklistModule { }

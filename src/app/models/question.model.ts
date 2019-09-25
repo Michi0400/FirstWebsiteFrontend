@@ -2,14 +2,14 @@ import { Angabe } from './angabe.model';
 
 export class Question {
     public id: string;
-    public input: string;
-    public output: string;
+    public name: string;
+    public description: string;
     public angaben: Angabe[];
     public anleitung: string;
 
-    constructor({ input, output, angaben, anleitung }: { input: string; output: string; angaben: Angabe[], anleitung: string }) {
-        this.input = input;
-        this.output = output;
+    constructor({ name, description, angaben, anleitung }: { name: string; description: string; angaben: Angabe[], anleitung: string }) {
+        this.name = name;
+        this.description = description;
         this.angaben = angaben;
         this.anleitung = anleitung;
     }

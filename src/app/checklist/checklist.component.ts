@@ -15,7 +15,7 @@ import { QuestionEditComponent } from './question-edit/question-edit.component';
 export class ChecklistComponent implements OnInit {
   public trainingData: Question[] = [
   ];
-  public displayedColumns: string[] = ['index', 'input', 'output', 'delete', 'edit', 'link'];
+  public displayedColumns: string[] = ['index', 'name', 'description', 'delete', 'edit', 'link'];
   public isEmpty = false;
   public editing = false;
   public helpId: string;
@@ -31,8 +31,10 @@ export class ChecklistComponent implements OnInit {
     this.dialog.open(QuestionAddComponent)
       .afterClosed()
       .subscribe(response => {
-        if (response != null) {
-          this.trainingData = [...this.trainingData, response]
+        if (response !== null) {
+          console.log(response);
+          this.trainingData = [...this.trainingData, response];
+          // this.ngOnInit()
         }
       })
   }
@@ -54,12 +56,12 @@ export class ChecklistComponent implements OnInit {
   }
 
   public async deleteAll(data: Question[]) {
-    await this.dialog.open(QuestionDeleteComponent)
+    this.dialog.open(QuestionDeleteComponent)
       .afterClosed()
       .subscribe(response => {
         if (response) {
-          data.forEach(element => {
-            this.questionService.delete(element.id);
+          data.forEach(async element => {
+            await this.questionService.delete(element.id);
             this.trainingData = this.trainingData.filter(d => d.id !== element.id);
           });
         }

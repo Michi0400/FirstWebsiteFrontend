@@ -1,14 +1,14 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened">
     <mat-nav-list>
-      <mat-list-item routerLink="/checklist"><i class="material-icons">list</i>Checklist</mat-list-item>
+      <mat-list-item routerLink="/checklist"><i class="material-icons">list</i>Overview</mat-list-item>
       <mat-list-item routerLink="/shoppinglist"><i class="material-icons">check_box</i>Shoppinglist</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
       <span>
-        <h1>Checklist</h1>
+        <h1>Overview</h1>
       </span>
       <span class="autoFlexer"></span>
       <span>
@@ -25,15 +25,15 @@
         <td mat-cell *matCellDef="let user; let i = index;">{{i+1}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="input">
-        <th mat-header-cell class="input" *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let user">{{user.input}}</td>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell class="name" *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let user">{{user.name}}</td>
 
       </ng-container>
 
-      <ng-container matColumnDef="output">
-        <th mat-header-cell class="output" *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let user">{{user.output}}</td>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell class="description" *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let user">{{user.description}}</td>
 
       </ng-container>
 

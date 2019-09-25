@@ -22,11 +22,10 @@ export class QuestionService {
     return this.http.get<Question[]>('http://localhost:4000/question').toPromise();
   }
 
-  public async create({ input, output, angaben, anleitung }: { input: string, output: string, angaben: Angabe[], anleitung: string }) {
-    console.log(angaben);
+  public async create({ name, description, angaben, anleitung }: { name: string, description: string, angaben: Angabe[], anleitung: string }) {
     return this.http.post<Question>('http://localhost:4000/question', {
-      input,
-      output,
+      name,
+      description,
       anleitung,
       angaben
     }).toPromise()
@@ -36,10 +35,10 @@ export class QuestionService {
     return this.http.delete(`http://localhost:4000/question/${id}`).toPromise();
   }
 
-  public async update({ input, output, id }: Question) {
+  public async update({ name, description, id }: Question) {
     return this.http.put(`http://localhost:4000/question/${id}`, {
-      input,
-      output
+      name,
+      description
     }).toPromise();
   }
 

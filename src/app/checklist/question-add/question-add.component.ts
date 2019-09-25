@@ -1,9 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Question } from 'src/app/models/question.model';
 import { Angabe } from '../../../app/models/angabe.model';
 import { QuestionService } from '../../question.service';
 
@@ -18,15 +16,14 @@ export class QuestionAddComponent implements AfterViewInit {
   @ViewChild('angabe', { static: false })
   private angabeInput: ElementRef<HTMLInputElement>
 
-  public input: string = "";
-  public output: string = "";
+  public name: string = "";
+  public description: string = "";
   public angabeStr: string = "";
   public angaben: Angabe[] = [];
   public anleitung: string = "";
   public emptyAngaben = true;
   public angabe$: Observable<any>;
   public helpOptions: Angabe[] = [];
-  public myControl = new FormControl();
   public helpId: string = "";
 
   constructor(
@@ -55,18 +52,17 @@ export class QuestionAddComponent implements AfterViewInit {
     this.helpId = '';
   }
   public async add() {
-    if (this.angabeStr != '') {
+    if (this.angabeStr.trim() !== '') {
       this.angaben.push(new Angabe({ id: this.helpId, name: this.angabeStr }));
     }
-    if (this.input != '' && this.output != '' && this.angaben != [] && this.anleitung != '') {
-      let question = new Question({ input: this.input, output: this.output, angaben: this.angaben, anleitung: this.anleitung })
+    if (this.name.trim() !== '' && this.description.trim() !== '' && this.angaben.length !== 0 && this.anleitung.trim() !== '') {
       const q = await this.questionService.create({
-        input: this.input,
-        output: this.output,
+        name: this.name,
+        description: this.description,
         angaben: this.angaben,
         anleitung: this.anleitung
       });
-      this.dialogRef.close(question);
+      this.dialogRef.close(q);
     } else {
       this.dialogRef.close(null);
     }
