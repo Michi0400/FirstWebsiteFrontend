@@ -21,7 +21,7 @@ export class ChecklistContentComponent implements OnInit {
   public helpAngaben: Angabe[];
   public helpAnleitung: string;
   public helpName: string;
-  public displayedColumns: string[] = ['menge', 'angabe', 'add'];
+  public displayedColumns: string[] = ['menge', 'einheit', 'angabe', 'add'];
 
   constructor(private _location: Location,
     private readonly questionService: QuestionService,

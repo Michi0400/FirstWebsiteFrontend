@@ -9,7 +9,12 @@
 
             <ng-container matColumnDef="menge">
                 <th mat-header-cell *matHeaderCellDef>Menge</th>
-                <td mat-cell *matCellDef="let element"> Anzahl</td>
+                <td mat-cell *matCellDef="let element"> {{element.menge}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="einheit">
+                <th mat-header-cell *matHeaderCellDef>Einheit</th>
+                <td mat-cell *matCellDef="let element"> {{element.einheit}}</td>
             </ng-container>
 
             <ng-container matColumnDef="angabe">
