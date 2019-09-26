@@ -1,5 +1,13 @@
 import { Angabe } from './angabe.model';
 
+export interface IQuestion {
+    id: string;
+    name: string;
+    description: string;
+    angaben: Angabe[];
+    anleitung: string;
+}
+
 export class Question {
     public id: string;
     public name: string;

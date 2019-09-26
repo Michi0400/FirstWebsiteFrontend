@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@ang
 import { MatDialogRef } from '@angular/material/dialog';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { CompleteAngabe } from 'src/app/models/completeAnlage.model';
-import { Angabe } from '../../../app/models/angabe.model';
+import { Angabe } from 'src/app/models/angabe.model';
+import { IQuestion } from 'src/app/models/question.model';
 import { QuestionService } from '../../question.service';
 
 
@@ -17,15 +17,13 @@ export class QuestionAddComponent implements AfterViewInit, OnDestroy {
   @ViewChild('angabe', { static: false })
   private angabeInput: ElementRef<HTMLInputElement>
 
-  public name: string = '';
-  public description: string = '';
+  public question: Partial<IQuestion> = {};
+
   public angabeStr: string = '';
-  public angaben: Angabe[] = [];
-  public anleitung: string = '';
   public angabe$: Observable<any>;
   public helpOptions: Angabe[] = [];
   public helpId: string = '';
-  public completeAngabe: CompleteAngabe[] = [];
+  public completeAngabe: Angabe[] = [];
   public displayedColumns: string[] = ['menge', 'einheit', 'angabe', 'add'];
   public menge: number = 0;
   public einheit: string = '';
@@ -44,8 +42,7 @@ export class QuestionAddComponent implements AfterViewInit, OnDestroy {
         map(e => (e.target as HTMLInputElement).value)
       )
     this.angabe$.subscribe(async val => {
-      const res = await this.questionService.queryAnlage(val);
-      this.helpOptions = res;
+      this.helpOptions = await this.questionService.queryAnlage(val);
     })
   }
 
@@ -53,30 +50,27 @@ export class QuestionAddComponent implements AfterViewInit, OnDestroy {
     if (this.isEmpty) {
       this.dialogRef.close(null)
     }
-
   }
+
   public addAngabe() {
-    const newAngabe = new Angabe({ id: this.helpId, name: this.angabeStr });
-    this.completeAngabe = [...this.completeAngabe, (new CompleteAngabe({ menge: this.menge, einheit: this.einheit, id: newAngabe.id, name: newAngabe.name }))];
-    this.angaben.push(newAngabe);
+    this.completeAngabe = [...this.completeAngabe, (new Angabe({ menge: this.menge, einheit: this.einheit, id: this.helpId, name: this.angabeStr }))];
     this.angabeStr = '';
     this.helpId = '';
     this.einheit = '';
     this.menge = 0;
   }
+
   public async add() {
     if (this.angabeStr.trim() !== '') {
-      this.angaben.push(new Angabe({ id: this.helpId, name: this.angabeStr }));
+      this.completeAngabe = [...this.completeAngabe, (new Angabe({ menge: this.menge, einheit: this.einheit, id: this.helpId, name: this.angabeStr }))];
     }
-    if (this.name.trim() !== '' && this.description.trim() !== '' && this.angaben.length !== 0 && this.anleitung.trim() !== '') {
-      this.isEmpty = false;
-    }
-    if (!this.isEmpty) {
+    if (this.question.name.trim() !== '' && this.question.description.trim() !== '' && this.completeAngabe.length !== 0 && this.question.anleitung.trim() !== '') {
+      this.isEmpty = false
       const q = await this.questionService.create({
-        name: this.name,
-        description: this.description,
-        angaben: this.angaben,
-        anleitung: this.anleitung
+        name: this.question.name,
+        description: this.question.description,
+        angaben: this.completeAngabe,
+        anleitung: this.question.anleitung
       });
       this.dialogRef.close(q);
     } else {
@@ -84,7 +78,7 @@ export class QuestionAddComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  public save(angabe: Angabe) {
+  public save(angabe: Angabe, event: Event) {
     this.helpId = angabe.id;
     this.angabeStr = angabe.name;
   }

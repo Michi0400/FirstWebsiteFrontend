@@ -1,17 +1,17 @@
 <h1 mat-dialog-title>Adding</h1>
 <div mat-dialog-content>
     <mat-form-field>
-        <input matInput [(ngModel)]="name" placeholder="Name">
+        <input matInput [(ngModel)]="question.name" placeholder="Name">
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="description" placeholder="Description">
+        <input matInput [(ngModel)]="question.description" placeholder="Description">
     </mat-form-field>
 
 
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="anleitung" placeholder="Anleitung">
+        <input matInput [(ngModel)]="question.anleitung" placeholder="Anleitung">
     </mat-form-field>
     <table mat-table [dataSource]="completeAngabe">
 
@@ -49,7 +49,7 @@
             <td mat-footer-cell *matFooterCellDef>
                 <input matInput [ngModel]="angabeStr" placeholder="Angabe" [matAutocomplete]="auto" #angabe>
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of helpOptions" [value]="option" (click)="save(option)">
+                    <mat-option *ngFor="let option of helpOptions" [value]="option" (onSelectionChange)="save(option)">
                         {{option.name}}
                     </mat-option>
                 </mat-autocomplete>
