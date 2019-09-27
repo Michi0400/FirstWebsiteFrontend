@@ -7,12 +7,11 @@
     <mat-form-field>
         <input matInput [(ngModel)]="rezept.description" placeholder="Description">
     </mat-form-field>
-
-
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="rezept.anleitung" placeholder="Anleitung">
+        <textarea matInput rows="9" [(ngModel)]="rezept.anleitung" placeholder="Anleitung"></textarea>
     </mat-form-field>
+
     <table mat-table [dataSource]="completeAngabe">
 
         <ng-container matColumnDef="menge">

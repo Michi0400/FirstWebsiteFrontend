@@ -62,12 +62,12 @@ export class ShoppinglistComponent implements OnInit {
     }
   }
 
-  public async deleteAll(data: any) {
+  public async deleteAll() {
     await this.dialog.open(ShoppingitemDeleteComponent)
       .afterClosed()
       .subscribe(response => {
         if (response) {
-          data.forEach(element => {
+          this.shoppingList.data.forEach(element => {
             this.shoppingItemService.delete(element.id);
             this.shoppingList.data = this.shoppingList.data.filter(d => d.id !== element.id);
           });

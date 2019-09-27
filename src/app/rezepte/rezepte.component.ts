@@ -47,12 +47,12 @@ export class RezeptComponent implements OnInit {
     }
   }
 
-  public async deleteAll(data: Rezept[]) {
+  public async deleteAll(data: MatTableDataSource<Rezept>) {
     this.dialog.open(RezeptDeleteComponent)
       .afterClosed()
       .subscribe(response => {
         if (response) {
-          data.forEach(async element => {
+          data.data.forEach(async element => {
             await this.repeptService.delete(element.id);
             this.trainingData.data = this.trainingData.data.filter(d => d.id !== element.id);
           });
