@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-question-delete',
-  templateUrl: './question-delete.component.html',
-  styleUrls: ['./question-delete.component.css']
+  selector: 'app-rezepte-delete',
+  templateUrl: './rezept-delete.component.html',
+  styleUrls: ['./rezept-delete.component.css']
 })
-export class QuestionDeleteComponent {
+export class RezeptDeleteComponent {
 
   constructor(
-    private readonly dialogRef: MatDialogRef<QuestionDeleteComponent>,
+    private readonly dialogRef: MatDialogRef<RezeptDeleteComponent>,
   ) { }
 
 

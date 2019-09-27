@@ -11,8 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const appRoutes: Routes = [
   {
-    path: 'checklist',
-    loadChildren: () => import('./checklist/checklist.module').then(m => m.ChecklistModule),
+    path: 'rezept',
+    loadChildren: () => import('./rezepte/rezepte.module').then(m => m.RezeptModule),
   },
   {
     path: 'shoppinglist',

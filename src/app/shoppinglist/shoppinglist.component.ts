@@ -25,7 +25,6 @@ export class ShoppinglistComponent implements OnInit {
 
   public async add() {
     this.isAdd = !this.isAdd;
-    console.log(this.newInput)
     if (!this.isAdd && this.newInput != '') {
       const q = await this.shoppingItemService.create({
         name: this.newInput,

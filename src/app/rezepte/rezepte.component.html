@@ -2,14 +2,14 @@
   <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened">
     <mat-nav-list>
       <mat-list-item routerLink="../"><i class="material-icons">home</i>Home</mat-list-item>
-      <mat-list-item routerLink="/checklist"><i class="material-icons">list</i>Overview</mat-list-item>
+      <mat-list-item routerLink="/rezept"><i class="material-icons">list</i>Rezepte</mat-list-item>
       <mat-list-item routerLink="/shoppinglist"><i class="material-icons">check_box</i>Shoppinglist</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
       <span>
-        <h1>Overview</h1>
+        <h1>Rezepte</h1>
       </span>
       <span class="autoFlexer"></span>
       <span>
@@ -49,8 +49,8 @@
 
       <ng-container matColumnDef="edit">
         <th mat-header-cell class="edit" *matHeaderCellDef></th>
-        <td mat-total-cell *matCellDef="let question">
-          <button mat-button (click)="edit(question)">
+        <td mat-total-cell *matCellDef="let rezept">
+          <button mat-button (click)="edit(rezept)">
             <i class="material-icons">edit</i>
           </button>
         </td>
@@ -58,8 +58,8 @@
 
       <ng-container matColumnDef="link">
         <th mat-header-cell class="link" *matHeaderCellDef></th>
-        <td mat-total-cell *matCellDef="let question">
-          <button mat-button routerLink="../checklist/content/{{question.id}}">
+        <td mat-total-cell *matCellDef="let rezept">
+          <button mat-button routerLink="../rezept/content/{{rezept.id}}">
             <i class="material-icons">forward</i>
           </button>
         </td>

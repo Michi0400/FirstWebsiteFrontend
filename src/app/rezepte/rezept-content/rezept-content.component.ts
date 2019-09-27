@@ -3,19 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Angabe } from 'src/app/models/angabe.model';
-import { Question } from 'src/app/models/question.model';
-import { QuestionService } from 'src/app/question.service';
-import { ShoppingItemService } from 'src/app/shoppingitem.service';
+import { Angabe } from '../../models/angabe.model';
+import { Rezept } from '../../models/rezept.model';
+import { RezeptService } from '../../rezept.service';
+import { ShoppingItemService } from '../../shoppingitem.service';
 
 @Component({
-  selector: 'app-checklist-content',
-  templateUrl: './checklist-content.component.html',
-  styleUrls: ['./checklist-content.component.css']
+  selector: 'app-rezepte-content',
+  templateUrl: './rezept-content.component.html',
+  styleUrls: ['./rezept-content.component.css']
 })
-export class ChecklistContentComponent implements OnInit {
+export class RezeptContentComponent implements OnInit {
 
-  public data: Question;
+  public data: Rezept;
   private routeSub: Subscription;
   private helpId;
   public helpAngaben: Angabe[];
@@ -24,7 +24,7 @@ export class ChecklistContentComponent implements OnInit {
   public displayedColumns: string[] = ['menge', 'einheit', 'angabe', 'add'];
 
   constructor(private _location: Location,
-    private readonly questionService: QuestionService,
+    private readonly rezeptService: RezeptService,
     private route: ActivatedRoute,
     private readonly shoppingItemService: ShoppingItemService,
     private _snackBar: MatSnackBar) { }
@@ -33,7 +33,7 @@ export class ChecklistContentComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       this.helpId = params['id'];
     });
-    this.data = await this.questionService.getOne(this.helpId);
+    this.data = await this.rezeptService.getOne(this.helpId);
     this.helpAngaben = this.data.angaben;
     this.helpAnleitung = this.data.anleitung;
     this.helpName = this.data.name;

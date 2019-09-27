@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from "@angular/router";
-import { Question } from "../models/question.model";
-import { QuestionService } from '../question.service';
-import { QuestionAddComponent } from "./question-add/question-add.component";
-import { QuestionDeleteComponent } from "./question-delete/question-delete.component";
-import { QuestionEditComponent } from './question-edit/question-edit.component';
+import { Rezept } from "../models/rezept.model";
+import { RezeptService } from '../rezept.service';
+import { RezeptAddComponent } from "./rezept-add/rezept-add.component";
+import { RezeptDeleteComponent } from "./rezept-delete/rezept-delete.component";
+import { RezeptEditComponent } from './rezept-edit/rezept-edit.component';
 
 @Component({
-  selector: 'app-checklist',
-  templateUrl: './checklist.component.html',
-  styleUrls: ['./checklist.component.css']
+  selector: 'app-rezepte',
+  templateUrl: './rezepte.component.html',
+  styleUrls: ['./rezepte.component.css']
 })
-export class ChecklistComponent implements OnInit {
-  public trainingData: Question[] = [
+export class RezeptComponent implements OnInit {
+  public trainingData: Rezept[] = [
   ];
   public displayedColumns: string[] = ['index', 'name', 'description', 'delete', 'edit', 'link'];
   public isEmpty = false;
   public editing = false;
   public helpId: string;
 
-  constructor(private router: Router, private readonly questionService: QuestionService, private readonly dialog: MatDialog) { };
+  constructor(private router: Router, private readonly repeptService: RezeptService, private readonly dialog: MatDialog) { };
 
   async ngOnInit() {
-    this.trainingData = await this.questionService.getAll();
+    this.trainingData = await this.repeptService.getAll();
   }
 
   public add() {
-    this.dialog.open(QuestionAddComponent, {
+    this.dialog.open(RezeptAddComponent, {
       height: '600px',
       width: '800px',
     }).afterClosed()
@@ -40,20 +40,20 @@ export class ChecklistComponent implements OnInit {
   }
 
   public async delete(data: any) {
-    await this.questionService.delete(data.id);
+    await this.repeptService.delete(data.id);
     this.trainingData = this.trainingData.filter(d => d.id !== data.id)
     if (this.trainingData.length == 0) {
       this.isEmpty = true;
     }
   }
 
-  public async deleteAll(data: Question[]) {
-    this.dialog.open(QuestionDeleteComponent)
+  public async deleteAll(data: Rezept[]) {
+    this.dialog.open(RezeptDeleteComponent)
       .afterClosed()
       .subscribe(response => {
         if (response) {
           data.forEach(async element => {
-            await this.questionService.delete(element.id);
+            await this.repeptService.delete(element.id);
             this.trainingData = this.trainingData.filter(d => d.id !== element.id);
           });
         }
@@ -64,8 +64,8 @@ export class ChecklistComponent implements OnInit {
     }
   }
 
-  public edit(data: Question) {
-    this.dialog.open(QuestionEditComponent, {
+  public edit(data: Rezept) {
+    this.dialog.open(RezeptEditComponent, {
       data
     });
   }

@@ -1,17 +1,17 @@
 <h1 mat-dialog-title>Adding</h1>
 <div mat-dialog-content>
     <mat-form-field>
-        <input matInput [(ngModel)]="question.name" placeholder="Name">
+        <input matInput [(ngModel)]="rezept.name" placeholder="Name">
     </mat-form-field>
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="question.description" placeholder="Description">
+        <input matInput [(ngModel)]="rezept.description" placeholder="Description">
     </mat-form-field>
 
 
     <br>
     <mat-form-field>
-        <input matInput [(ngModel)]="question.anleitung" placeholder="Anleitung">
+        <input matInput [(ngModel)]="rezept.anleitung" placeholder="Anleitung">
     </mat-form-field>
     <table mat-table [dataSource]="completeAngabe">
 
@@ -21,7 +21,6 @@
                 <span>{{angabe.menge}}</span>
             </td>
             <td mat-footer-cell *matFooterCellDef>
-
                 <input matInput [(ngModel)]="menge" placeholder="Menge">
             </td>
         </ng-container>

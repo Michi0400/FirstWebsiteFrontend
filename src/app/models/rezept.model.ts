@@ -1,6 +1,6 @@
 import { Angabe } from './angabe.model';
 
-export interface IQuestion {
+export interface IRezept {
     id: string;
     name: string;
     description: string;
@@ -8,7 +8,7 @@ export interface IQuestion {
     anleitung: string;
 }
 
-export class Question {
+export class Rezept {
     public id: string;
     public name: string;
     public description: string;
