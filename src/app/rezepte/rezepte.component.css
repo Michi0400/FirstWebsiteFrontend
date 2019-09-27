@@ -88,3 +88,8 @@ button{
 .mat-form-field{
     width: 99%;
 }
+
+.search{
+    width: 30%;
+    padding-left: 30px;
+}

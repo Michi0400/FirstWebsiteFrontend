@@ -52,8 +52,24 @@ table{
 }
 
 th.mat-column-name{ 
-    width: 95%;
+    width: 79%;
 } 
+th.mat-column-menge{ 
+    text-align: center;
+    width: 8%;
+} 
+
+td.menge{ 
+    text-align: center;
+}
+
+th.mat-column-einheit{ 
+    text-align: center;
+    width: 8%;
+} 
+td.einheit{ 
+    text-align: center;
+}
 
 th.mat-column-delete{ 
     width: 5%;
@@ -62,4 +78,9 @@ th.mat-column-delete{
 button{
     background-color: rgb(119, 113, 113);
     color: ivory;
+}
+
+.search{
+    width: 30%;
+    padding-left: 30px;
 }

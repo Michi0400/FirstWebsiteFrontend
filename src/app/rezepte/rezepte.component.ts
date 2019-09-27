@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from "@angular/router";
 import { Rezept } from "../models/rezept.model";
 import { RezeptService } from '../rezept.service';
@@ -13,8 +14,7 @@ import { RezeptEditComponent } from './rezept-edit/rezept-edit.component';
   styleUrls: ['./rezepte.component.css']
 })
 export class RezeptComponent implements OnInit {
-  public trainingData: Rezept[] = [
-  ];
+  public trainingData = new MatTableDataSource<Rezept>();
   public displayedColumns: string[] = ['index', 'name', 'description', 'delete', 'edit', 'link'];
   public isEmpty = false;
   public editing = false;
@@ -23,7 +23,7 @@ export class RezeptComponent implements OnInit {
   constructor(private router: Router, private readonly repeptService: RezeptService, private readonly dialog: MatDialog) { };
 
   async ngOnInit() {
-    this.trainingData = await this.repeptService.getAll();
+    this.trainingData.data = await this.repeptService.getAll();
   }
 
   public add() {
@@ -33,7 +33,7 @@ export class RezeptComponent implements OnInit {
     }).afterClosed()
       .subscribe(response => {
         if (response !== null) {
-          this.trainingData = [...this.trainingData, response];
+          this.trainingData.data = [...this.trainingData.data, response];
           this.isEmpty = false;
         }
       })
@@ -41,8 +41,8 @@ export class RezeptComponent implements OnInit {
 
   public async delete(data: any) {
     await this.repeptService.delete(data.id);
-    this.trainingData = this.trainingData.filter(d => d.id !== data.id)
-    if (this.trainingData.length == 0) {
+    this.trainingData.data = this.trainingData.data.filter(d => d.id !== data.id)
+    if (this.trainingData.data.length == 0) {
       this.isEmpty = true;
     }
   }
@@ -54,12 +54,12 @@ export class RezeptComponent implements OnInit {
         if (response) {
           data.forEach(async element => {
             await this.repeptService.delete(element.id);
-            this.trainingData = this.trainingData.filter(d => d.id !== element.id);
+            this.trainingData.data = this.trainingData.data.filter(d => d.id !== element.id);
           });
         }
       });
 
-    if (this.trainingData.length == 0) {
+    if (this.trainingData.data.length == 0) {
       this.isEmpty = true;
     }
   }
@@ -68,5 +68,9 @@ export class RezeptComponent implements OnInit {
     this.dialog.open(RezeptEditComponent, {
       data
     });
+  }
+
+  public applyFilter(filterValue: string) {
+    this.trainingData.filter = filterValue.trim().toLowerCase();
   }
 }

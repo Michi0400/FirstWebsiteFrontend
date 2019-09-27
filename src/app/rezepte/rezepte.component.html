@@ -19,6 +19,9 @@
           </i>
         </button></span>
     </mat-toolbar>
+    <mat-form-field class="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
     <table mat-table [dataSource]="trainingData">
 
       <ng-container matColumnDef="index">

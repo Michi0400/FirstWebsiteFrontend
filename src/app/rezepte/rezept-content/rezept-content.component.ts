@@ -43,9 +43,11 @@ export class RezeptContentComponent implements OnInit {
     this._location.back();
   }
 
-  public async addToShoppinglist(name: string) {
-    const q = await this.shoppingItemService.create({
-      name: name
+  public async addToShoppinglist(angabe: Angabe) {
+    const q = await this.shoppingItemService.decide({
+      menge: angabe.menge,
+      einheit: angabe.einheit,
+      name: angabe.name
     });
     this._snackBar.open("Sucessful", "Added", {
       duration: 2000,

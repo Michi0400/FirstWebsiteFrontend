@@ -19,7 +19,26 @@
           </i>
         </button></span>
     </mat-toolbar>
-    <table mat-table [dataSource]="trainingData">
+
+    <mat-form-field class="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="shoppingList">
+
+      <ng-container matColumnDef="menge">
+        <th mat-header-cell class="menge" *matHeaderCellDef>Menge</th>
+        <td mat-total-cell class="menge" *matCellDef="let user">
+          {{user.menge}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="einheit">
+        <th mat-header-cell class="einheit" *matHeaderCellDef>Einheit</th>
+        <td mat-total-cell class="einheit" *matCellDef="let user">
+          {{user.einheit}}
+        </td>
+      </ng-container>
 
       <ng-container matColumnDef="name">
         <th mat-header-cell class="name" *matHeaderCellDef>Gegenstand</th>
@@ -33,6 +52,7 @@
           </mat-selection-list>
         </td>
       </ng-container>
+
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell class="delete" *matHeaderCellDef></th>
@@ -51,11 +71,26 @@
       <mat-card-title>Eingabefeld</mat-card-title>
       <div class="inputfield">
         <mat-form-field>
-          <mat-label>Input</mat-label>
-          <input matInput [(ngModel)]="newInput" placeholder="Wie gehts?" (keyup.enter)="add()">
+          <mat-label>Menge</mat-label>
+          <input matInput [(ngModel)]="menge" placeholder="Menge">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Einheit</mat-label>
+          <mat-select placeholder="Einheit" [(ngModel)]="einheit">
+            <mat-option value="g">g</mat-option>
+            <mat-option value="kg">kg</mat-option>
+            <mat-option value="tl">tl</mat-option>
+            <mat-option value="el">el</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Gegenstand</mat-label>
+          <input matInput [(ngModel)]="gegenstand" placeholder="Gegenstand" (keyup.enter)="save()">
         </mat-form-field>
         <br>
-        <button mat-button (click)="add()" class="saveButton">
+        <button mat-button (click)="save()" class="saveButton">
           Speichern
         </button>
       </div>
